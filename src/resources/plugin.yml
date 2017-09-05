@@ -1,0 +1,8 @@
+name: MCTrapsHelpOp
+version: 1.0.0
+author: KajmaczeK
+main: pl.kajmaczek.mctraps.helpop.HelpOP
+website: https://mctraps.eu
+commands:
+
+permissions:
