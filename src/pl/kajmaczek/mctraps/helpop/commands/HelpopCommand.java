@@ -16,7 +16,7 @@ public class HelpopCommand implements CommandExecutor {
 
     public HelpopCommand(HelpOP plugin) {
         this.plugin = plugin;
-        this.plugin.getCommand("helpopop").setExecutor(this);
+        this.plugin.getCommand("helpop").setExecutor(this);
     }
 
     @Override

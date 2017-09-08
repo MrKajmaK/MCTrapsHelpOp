@@ -1,6 +1,8 @@
 package pl.kajmaczek.mctraps.helpop;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Ticket {
     private HelpOP plugin;
@@ -68,24 +70,22 @@ public class Ticket {
         }
     }
 
-    public boolean create() {
+    public int create() {
+        int k = 0;
         if("x" + username + assigned + open + message != "x") {
             try {
-                plugin.statement.executeUpdate("INSERT INTO " + plugin.rTable + " (username, assigned, open, message) VALUES ('" + username + "', '" + assigned + "', '" + open + "', '" + message + "')");
+                plugin.statement.executeUpdate("INSERT INTO " + plugin.rTable + " (username, assigned, open, message) VALUES ('" + username + "', '" + assigned + "', '" + open + "', '" + message + "')", Statement.RETURN_GENERATED_KEYS);
+                ResultSet r = plugin.statement.getGeneratedKeys();
+                if(r.next()) {
+                    k = r.getInt(1);
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
-                return false;
+                return 0;
             }
-            return true;
-        } else {
-            try {
-                plugin.statement.executeUpdate("INSERT INTO " + plugin.rTable + " (username, assigned, open, message) VALUES ('" + username + "', '" + assigned + "', '" + open + "', '" + message + "')");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return false;
-            }
-            return true;
+            return k;
         }
+        return 0;
     }
 
     public boolean push() {

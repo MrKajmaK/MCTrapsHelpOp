@@ -4,7 +4,7 @@ author: KajmaczeK
 main: pl.kajmaczek.mctraps.helpop.HelpOP
 website: https://mctraps.eu
 commands:
-  helpopop:
+  helpop:
     description: "Komenda /helpop"
 permissions:
   tools.helpop.banned:

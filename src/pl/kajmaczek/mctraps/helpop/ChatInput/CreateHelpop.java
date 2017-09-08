@@ -43,18 +43,15 @@ public class CreateHelpop extends ChatInputStuff {
                     t.addMessage(message);
                 }
                 t.setUsername(username);
-                boolean sent = t.create();
-                if(sent) {
+                int sent = t.create();
+                if(sent != 0) {
                     Bukkit.getPlayer(username).sendMessage("§2Pomyslnie wyslano wiadomosc :)");
                 } else {
                     Bukkit.getPlayer(username).sendMessage("§4Blad: §cwystapil blad podczas wysylania wiadomosci");
                 }
 
-                try {
-                    ResultSet r = plugin.statement.executeQuery("SELECT * FROM " + plugin.rTable + " WHERE username = ")
-                }
-                Bukkit.broadcast("§8[§6§lHelpOP§8] §8[§6#" + t.getId() + "§8] §4" + Bukkit.getPlayer(username).getName() + " §8» §7" + t.getMessage(), "tools.helpop.read");
-                Bukkit.broadcast("§8[§6§lHelpOP§8] §8» §7wpisz §6/helpop assign " + t.getId() + " §7aby dac znac, ze zajmujesz sie ta sprawa", "tools.helpop.read");
+                Bukkit.broadcast("§8[§6§lHelpOP§8] §8[§6#" + sent + "§8] §4" + Bukkit.getPlayer(username).getName() + " §8» §7" + t.getMessage(), "tools.helpop.read");
+                Bukkit.broadcast("§8[§6§lHelpOP§8] §8» §7wpisz §6/helpop assign " + sent + " §7aby dac znac, ze zajmujesz sie ta sprawa", "tools.helpop.read");
                 stage = 9999;
                 map.removePlayer(username);
             }
