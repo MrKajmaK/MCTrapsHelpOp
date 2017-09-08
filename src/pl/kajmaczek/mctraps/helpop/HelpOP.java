@@ -4,6 +4,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import pl.kajmaczek.mctraps.helpop.ChatInput.ChatInput;
+import pl.kajmaczek.mctraps.helpop.commands.HelpopCommand;
+import pl.kajmaczek.mctraps.helpop.listeners.PlayerChatListener;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,6 +22,11 @@ public class HelpOP extends JavaPlugin {
     public Statement statement;
     private String host, database, username, password;
     private int port;
+
+    HelpopCommand helpopCommand;
+    PlayerChatListener playerChatListener;
+
+    public ChatInput ci = new ChatInput();
 
     @Override
     public void onEnable() {
@@ -47,6 +55,10 @@ public class HelpOP extends JavaPlugin {
             }
         };
         r.runTaskAsynchronously(this);
+
+        helpopCommand = new HelpopCommand(this);
+
+        playerChatListener = new PlayerChatListener(this);
     }
 
     @Override

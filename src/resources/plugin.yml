@@ -4,5 +4,12 @@ author: KajmaczeK
 main: pl.kajmaczek.mctraps.helpop.HelpOP
 website: https://mctraps.eu
 commands:
-
+  helpopop:
+    description: "Komenda /helpop"
 permissions:
+  tools.helpop.banned:
+    description: "Blokada na helpopa"
+    default: false
+  tools.helpop.read:
+    description: "Pozwala na odczytywanie helpopa"
+    default: op
