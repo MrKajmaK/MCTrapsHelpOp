@@ -74,6 +74,7 @@ public class Ticket {
         int k = 0;
         if("x" + username + assigned + open + message != "x") {
             try {
+                message = message.replace("send", "");
                 plugin.statement.executeUpdate("INSERT INTO " + plugin.rTable + " (username, assigned, open, message) VALUES ('" + username + "', '" + assigned + "', '" + open + "', '" + message + "')", Statement.RETURN_GENERATED_KEYS);
                 ResultSet r = plugin.statement.getGeneratedKeys();
                 if(r.next()) {
