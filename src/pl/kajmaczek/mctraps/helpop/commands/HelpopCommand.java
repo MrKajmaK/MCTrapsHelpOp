@@ -27,6 +27,8 @@ public class HelpopCommand implements CommandExecutor {
                 Player p = (Player) sender;
                 if (!p.hasPermission("tools.helpop.banned")) {
                     if (args.length == 0) {
+                        p.sendMessage("§8[§6HelpOP§8] §7Wpisz swoja wiadomosc na chat. §7Nastepnie wpisz §6send §7aby §a§lwyslac§7, lub §6cancel§7, aby §c§lanulowac! ");
+                        plugin.ci.addToMap(p.getName(), new CreateHelpop());
                         try {
                             ResultSet r = plugin.statement.executeQuery("SELECT COUNT(*) FROM " + plugin.rTable + " WHERE username = '" + p.getName() + "' AND open = '1'");
                             int count = 0;
@@ -51,10 +53,10 @@ public class HelpopCommand implements CommandExecutor {
                             p.sendMessage("§cWystapil blad w trakcie laczenia sie z baza danych");
                         }
                     } else {
-                        p.sendMessage("§4Poprawne uzycie: §c/helpop");
+                        p.sendMessage("§cPoprawne uzycie: §7/helpop");
                     }
                 } else {
-                    p.sendMessage("§4Blad: §cnie masz uprawnien");
+                    p.sendMessage("§4Blad: §cNie masz dostepu do tej komendy!");
                 }
             } else {
                 sender.sendMessage("§4Blad: §cmusisz byc graczem aby to zrobic");
