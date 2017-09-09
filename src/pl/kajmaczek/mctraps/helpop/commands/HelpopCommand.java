@@ -27,8 +27,6 @@ public class HelpopCommand implements CommandExecutor {
                 Player p = (Player) sender;
                 if (!p.hasPermission("tools.helpop.banned")) {
                     if (args.length == 0) {
-                        p.sendMessage("§8[§6HelpOP§8] §7Wpisz swoja wiadomosc na chat. §7Nastepnie wpisz §6send §7aby §a§lwyslac§7, lub §6cancel§7, aby §c§lanulowac! ");
-                        plugin.ci.addToMap(p.getName(), new CreateHelpop());
                         try {
                             ResultSet r = plugin.statement.executeQuery("SELECT COUNT(*) FROM " + plugin.rTable + " WHERE username = '" + p.getName() + "' AND open = '1'");
                             int count = 0;
@@ -37,7 +35,7 @@ public class HelpopCommand implements CommandExecutor {
                             }
 
                             if (count == 0) {
-                                p.sendMessage("§8[§6HelpOP§8] §9Wpisuj swoja wiadomosc. Wpisz §6§lsend §9aby wyslac lub §6§lcancel §9aby anuluowac");
+                                p.sendMessage("§8[§6HelpOP§8] §7Wpisz swoja wiadomosc na chat. §7Nastepnie wpisz §6send §7aby §a§lwyslac§7, lub §6cancel§7, aby §c§lanulowac! ");
                                 plugin.ci.addToMap(p.getName(), new CreateHelpop());
                             } else {
                                 ResultSet result = plugin.statement.executeQuery("SELECT * FROM " + plugin.rTable + " WHERE username = '" + p.getName() + "' AND open = '1'");
@@ -45,7 +43,7 @@ public class HelpopCommand implements CommandExecutor {
                                 if (result.next()) {
                                     id = result.getInt("id");
                                 }
-                                p.sendMessage("§8[§6HelpOP§8] §9Wpisuj swoja wiadomosc. Zostanie ona wyslana do administratora zajmujacego sie twoja sprawa. Wpisz §6§lsend §9aby wyslac lub §6§lcancel §9aby anuluowac");
+                                p.sendMessage("§8[§6HelpOP§8] §7Wpisz swoja wiadomosc na chat. Zostanie ona wyslana do administratora zajmujacego sie twoja sprawa. §7Nastepnie wpisz §6send §7aby §a§lwyslac§7, lub §6cancel§7, aby §c§lanulowac! ");
                                 plugin.ci.addToMap(p.getName(), new AddHelpop(id));
                             }
                         } catch (SQLException e) {

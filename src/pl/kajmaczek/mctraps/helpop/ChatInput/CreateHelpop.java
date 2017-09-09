@@ -31,16 +31,20 @@ public class CreateHelpop extends ChatInputStuff {
                     t = new Ticket(plugin);
                     t.setMessage(message);
                     stage = 1;
+                    Bukkit.getPlayer(username).sendMessage("§aWiadomosc zostala dodana! §7Aby ja §a§lwyslac §7wpisz: §6send§7, a aby ja §c§lanulowac §7wpisz §6cancel§7!");
                 } else if(stage == 1) {
                     t.addMessage(message);
+                    Bukkit.getPlayer(username).sendMessage("§aWiadomosc zostala dodana! §7Aby ja §a§lwyslac §7wpisz: §6send§7, a aby ja §c§lanulowac §7wpisz §6cancel§7!");
                 }
             } else {
                 if(stage == 0) {
                     t = new Ticket(plugin);
                     t.setMessage(message);
+                    Bukkit.getPlayer(username).sendMessage("§aWiadomosc zostala dodana! §7Aby ja §a§lwyslac §7wpisz: §6send§7, a aby ja §c§lanulowac §7wpisz §6cancel§7!");
                     stage = 1;
                 } else if(stage == 1) {
                     t.addMessage(message);
+                    Bukkit.getPlayer(username).sendMessage("§aWiadomosc zostala dodana! §7Aby ja §a§lwyslac §7wpisz: §6send§7, a aby ja §c§lanulowac §7wpisz §6cancel§7!");
                 }
                 t.setUsername(username);
                 t.setOpen(true);
