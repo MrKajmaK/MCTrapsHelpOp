@@ -24,6 +24,10 @@ public class Ticket {
         this.open = open;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -70,23 +74,22 @@ public class Ticket {
         }
     }
 
-    public int create() {
-        int k = 0;
+    public boolean create() {
         if("x" + username + assigned + open + message != "x") {
             try {
                 message = message.replace("send", "");
                 plugin.statement.executeUpdate("INSERT INTO " + plugin.rTable + " (username, assigned, open, message) VALUES ('" + username + "', '" + assigned + "', '" + open + "', '" + message + "')", Statement.RETURN_GENERATED_KEYS);
                 ResultSet r = plugin.statement.getGeneratedKeys();
                 if(r.next()) {
-                    k = r.getInt(1);
+                    id = r.getInt(1);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-                return 0;
+                return false;
             }
-            return k;
+            return true;
         }
-        return 0;
+        return false;
     }
 
     public boolean push() {
